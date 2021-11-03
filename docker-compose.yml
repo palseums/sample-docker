@@ -6,4 +6,11 @@ services:
     container_name: varnikhaa_container
     volumes:
         - "/testing1/testing2:/palani/testing/"
-
+# version: '3'
+# services:
+#   service1:
+#     image: varnikhaa_image
+#     build: .
+#     container_name: varnikhaa_container
+#     volumes:
+#         - "/testing1/testing2:/palani/testing/"
