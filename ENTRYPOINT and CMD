@@ -1,0 +1,49 @@
+1) Build a docker image
+	docker build -t <image_name> .
+2) Run a container
+	docker run <image_name>
+	docker run -d -p Hostport:ContainerPort <image_name>:<version_number> 
+
+3) CMD command
+	when we give some argument while running the container command like below. It will replace or override the command in the docker file
+	eg: 
+		1) Let us assume we have something like below in the docker file
+			FROM centos:centos7
+			CMD ["yum","-y","install","git"]
+		2) Assume we have created an image with name demo-app with the above docker file
+		3) Now we are running the container with the below command and giving hello as an argument
+			docker run demo-app hello
+		4) Result : It will replace the CMD input with hello
+4) ENTRYPOINT command
+	when we give some argument while running the container command like below. It will append the command in the docker file
+	eg:
+		1) Let us assume we have something like below in the docker file
+			FROM centos:centos7
+			ENTRYPOINT ["yum","-y","install","git"]
+		2) Assume we have created an image with name demo-app with the above docker file
+		3) Now we are running the container with the below command and giving httpd as an argument
+			docker run demo-app httpd
+		4) Result : It will append the ENTRYPOINT input with httpd
+
+5) ENTRYPOINT and CMD command in the same file.
+	ENTRYPOINT will take CMD argument as an input
+	eg:
+	 1) Let us assume we have something like below in the docker file
+			FROM centos:centos7
+			ENTRYPOINT ["yum","-y","install"]
+			CMD ["git"]
+	2) In the above Entrypoint will run something like this yum -y install git
+
+6) How to replace the command in the entrypoint to someother command 
+	eg:
+	1) Let us assume we have something like below in the docker file
+			FROM centos:centos7
+			ENTRYPOINT ["yum","-y","install"]
+	2) Assume we have created an image with name demo-app with the above docker file
+	3) Now we are running the container with the below command
+		docker run --entrypoint useradd demo-app palani-user-id
+
+
+
+
+
